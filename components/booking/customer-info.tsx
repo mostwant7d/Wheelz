@@ -11,7 +11,9 @@ interface CustomerInfoProps {
     lastName: string;
     email: string;
     phone: string;
+    address: string;
     city: string;
+    zipCode: string;
     drivingLicense: string;
   }) => void;
   onBack: () => void;
@@ -23,7 +25,9 @@ export default function CustomerInfo({ onSubmit, onBack }: CustomerInfoProps) {
     lastName: '',
     email: '',
     phone: '',
+    address: '',
     city: '',
+    zipCode: '',
     drivingLicense: '',
   });
 
@@ -96,11 +100,35 @@ export default function CustomerInfo({ onSubmit, onBack }: CustomerInfoProps) {
         </div>
 
         <div>
+          <label className="block text-sm font-medium text-gray-300 mb-2">Адрес</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            required
+            className="w-full bg-black/50 border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C6A052] focus:border-transparent"
+          />
+        </div>
+
+        <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">Город</label>
           <input
             type="text"
             name="city"
             value={formData.city}
+            onChange={handleChange}
+            required
+            className="w-full bg-black/50 border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C6A052] focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-300 mb-2">Индекс</label>
+          <input
+            type="text"
+            name="zipCode"
+            value={formData.zipCode}
             onChange={handleChange}
             required
             className="w-full bg-black/50 border border-gray-700 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C6A052] focus:border-transparent"

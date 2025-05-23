@@ -100,9 +100,7 @@ export default function BookingPage() {
     lastName: '',
     email: '',
     phone: '',
-    address: '',
     city: '',
-    zipCode: '',
     drivingLicense: '',
   });
   
