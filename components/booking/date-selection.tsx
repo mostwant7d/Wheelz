@@ -110,7 +110,7 @@ const DateSelection = ({
               </div>
             </label>
             <div className="bg-black/50 border border-white/10 rounded-lg p-4">
-              {date.from ? (
+              {date?.from ? (
                 <div className="text-lg">
                   {date.from.toLocaleDateString('ru-RU', {
                     day: '2-digit',
@@ -154,7 +154,7 @@ const DateSelection = ({
               </div>
             </label>
             <div className="bg-black/50 border border-white/10 rounded-lg p-4">
-              {date.to ? (
+              {date?.to ? (
                 <div className="text-lg">
                   {date.to.toLocaleDateString('ru-RU', {
                     day: '2-digit',
@@ -192,7 +192,7 @@ const DateSelection = ({
         <Button
           className="w-full bg-[#C6A052] hover:bg-[#C6A052]/80 text-black"
           onClick={handleNext}
-          disabled={!date.from || !date.to}
+          disabled={!date?.from || !date?.to}
         >
           Продолжить <ChevronRight className="ml-1 h-4 w-4" />
         </Button>
