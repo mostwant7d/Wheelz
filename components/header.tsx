@@ -61,7 +61,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Car className="h-8 w-8 text-[#C6A052]" />
-            <span className="text-xl font-bold tracking-tight">WHEELZ</span>
+            <span className="text-xl font-bold tracking-tight">AZAMDJANCARS</span>
           </Link>
 
           {/* Desktop Navigation */}

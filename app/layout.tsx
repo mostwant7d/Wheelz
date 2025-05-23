@@ -8,8 +8,8 @@ import Footer from '@/components/footer';
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export const metadata: Metadata = {
-  title: 'WHEELZ | Аренда премиальных автомобилей',
-  description: 'WHEELZ — сервис аренды премиальных и люксовых автомобилей. Роскошь, комфорт и скорость для вас!',
+  title: 'AZAMDJANCARS | Аренда премиальных автомобилей',
+  description: 'AZAMDJANCARS — сервис аренды премиальных и люксовых автомобилей. Роскошь, комфорт и скорость для вас!',
 };
 
 export default function RootLayout({
