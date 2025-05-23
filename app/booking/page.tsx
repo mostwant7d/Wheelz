@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import BookingSteps from '@/components/booking/booking-steps';
@@ -9,6 +9,9 @@ import DateSelection from '@/components/booking/date-selection';
 import CustomerInfo from '@/components/booking/customer-info';
 import BookingSummary from '@/components/booking/booking-summary';
 import { Calendar, Clock, User, Phone, Mail, Car, Send } from 'lucide-react';
+
+// Mark the page as dynamic
+export const dynamic = 'force-dynamic';
 
 type BookingStep = 'vehicle' | 'dates' | 'info' | 'summary';
 
@@ -85,7 +88,7 @@ const itemVariants = {
   },
 };
 
-export default function BookingPage() {
+function BookingContent() {
   const searchParams = useSearchParams();
   const vehicleId = searchParams.get('vehicleId');
   
@@ -245,5 +248,13 @@ export default function BookingPage() {
         </motion.div>
       </div>
     </motion.div>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div className="pt-24 pb-16">Loading...</div>}>
+      <BookingContent />
+    </Suspense>
   );
 }
