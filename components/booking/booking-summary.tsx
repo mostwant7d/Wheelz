@@ -67,11 +67,19 @@ const BookingSummary = ({
     setLoading(true);
     setError(null);
     setSuccess(false);
+    
     if (!dateRange.from || !dateRange.to) {
       setError('Ошибка: не выбраны даты бронирования.');
       setLoading(false);
       return;
     }
+
+    if (!vehicleData) {
+      setError('Ошибка: данные автомобиля не найдены.');
+      setLoading(false);
+      return;
+    }
+
     const { error } = await supabase.from('bookings').insert([
       {
         vehicle_id: vehicleId,
