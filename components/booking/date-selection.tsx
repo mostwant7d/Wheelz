@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { ChevronLeft, ChevronRight, CalendarDays, Clock } from 'lucide-react';
 import { ru } from 'date-fns/locale';
+import { DateRange } from 'react-day-picker';
 
 interface DateSelectionProps {
   selectedDate: { from: Date | undefined; to: Date | undefined };
@@ -21,7 +22,10 @@ const DateSelection = ({
   onBack,
   vehicleId,
 }: DateSelectionProps) => {
-  const [date, setDate] = useState<{ from: Date | undefined; to: Date | undefined }>(selectedDate);
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: selectedDate.from,
+    to: selectedDate.to,
+  });
   const [pickupTime, setPickupTime] = useState('12:00');
   const [returnTime, setReturnTime] = useState('12:00');
   
@@ -44,8 +48,21 @@ const DateSelection = ({
     }
   }, [date, vehicle]);
   
-  const handleContinue = () => {
-    onDateSelect(date);
+  const handleDateSelect = (range: DateRange | undefined) => {
+    setDate(range);
+    onDateSelect({
+      from: range?.from,
+      to: range?.to,
+    });
+  };
+
+  const handleNext = () => {
+    if (date?.from && date?.to) {
+      onDateSelect({
+        from: date.from,
+        to: date.to,
+      });
+    }
   };
 
   return (
@@ -62,7 +79,7 @@ const DateSelection = ({
           
           <h2 className="text-xl font-bold mb-2">Выберите даты аренды</h2>
           <p className="text-gray-400">
-            Выберите даты начала и окончания аренды автомобиля
+            Укажите даты получения и возврата автомобиля
           </p>
         </div>
         
@@ -70,7 +87,7 @@ const DateSelection = ({
           <Calendar
             mode="range"
             selected={date}
-            onSelect={setDate}
+            onSelect={handleDateSelect}
             locale={ru}
             disabled={{ before: new Date() }}
             className="bg-black"
@@ -174,7 +191,7 @@ const DateSelection = ({
         
         <Button
           className="w-full bg-[#C6A052] hover:bg-[#C6A052]/80 text-black"
-          onClick={handleContinue}
+          onClick={handleNext}
           disabled={!date.from || !date.to}
         >
           Продолжить <ChevronRight className="ml-1 h-4 w-4" />
