@@ -35,7 +35,7 @@ const DateSelection = ({
   const [totalPrice, setTotalPrice] = useState(0);
   
   useEffect(() => {
-    if (date.from && date.to) {
+    if (date?.from && date?.to) {
       const days = Math.round((date.to.getTime() - date.from.getTime()) / (1000 * 60 * 60 * 24)) + 1;
       setTotalDays(days);
       
